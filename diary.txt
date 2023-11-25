@@ -1,0 +1,62 @@
+docker-compose up -d
+docker cp src spark-master:/
+docker cp elasticsearch-hadoop-7.15.1.jar spark-master:elasticsearch-hadoop-7.15.1.jar
+docker cp src/movies.csv namenode:/
+docker cp src/ratings.csv namenode:/
+docker exec -it namenode /bin/bash
+
+hdfs dfs -mkdir /data/
+hdfs dfs -put movies.csv /data/
+hdfs dfs -put ratings.csv /data/
+exit
+
+docker exec -it spark-master /bin/bash
+mkdir /model
+mkdir /als
+
+spark/bin/spark-submit --master spark://spark-master:7077 --jars elasticsearch-hadoop-7.15.1.jar --driver-class-path elasticsearch-hadoop-7.15.1.jar src/als_recommendation_system.py
+pip3 install --upgrade pip
+pip install numpy
+
+python3 -m venv pyspark_venv
+source pyspark_venv/bin/activate
+pip3 install pip==21.3.1
+apk update
+apk add make automake gcc g++ subversion python3-dev
+pip3 install numpy venv-pack
+
+docker-compose up -d
+docker cp src spark-master:/
+docker cp elasticsearch-hadoop-7.15.1.jar spark-master:elasticsearch-hadoop-7.15.1.jar
+docker cp ../data/short_anime_ratings.csv namenode:/
+docker cp ../data/long_anime_ratings.csv namenode:/
+
+docker exec -it namenode /bin/bash
+hdfs dfs -mkdir /data/
+hdfs dfs -put short_anime_ratings.csv /data/
+hdfs dfs -put long_anime_ratings.csv /data/
+exit
+
+docker cp src spark-master:/
+docker exec -it spark-master /bin/bash
+source pyspark_venv/bin/activate
+spark/bin/spark-submit --master spark://spark-master:7077 --jars elasticsearch-hadoop-7.15.1.jar --driver-class-path elasticsearch-hadoop-7.15.1.jar src/als_anime.py
+
+sudo docker cp spark-master:/result ../
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
