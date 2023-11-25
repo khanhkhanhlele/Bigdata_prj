@@ -1,7 +1,5 @@
 # Big_Data
 
-<div align="center">
-
 # Anime Analysis and Recommendation System
 
 ## Introduction
