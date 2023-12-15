@@ -68,7 +68,7 @@ if __name__ == "__main__":
 
     # genres_header.append("TotalEps")
     # print("genres header: ", genres_header)
-
+  
     io_cluster.save_dataframes_to_elasticsearch(
         (anime, rating, animeTotalWatches, userTotalWatched),
         ("anime", "rating", "anime_total_watches", "user_total_watched"),

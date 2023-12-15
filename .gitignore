@@ -1,4 +1,6 @@
 bigdata*
 data/*.csv
 data/*.zip
+data/craw
+
 
