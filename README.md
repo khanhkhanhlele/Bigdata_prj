@@ -21,6 +21,12 @@ docker-compose up -d
 ```
 ### 1. Crawl
 ### 2. Kafka
+```
+docker exec -it kafka1 bash
+kafka-topics.sh --create --topic animelist_csv --partitions 5 --replication-factor 2 --bootstrap-server kafka1:9093 
+kafka-topics.sh --create --topic rating_complete --partitions 5 --replication-factor 2 --bootstrap-server kafka1:9093 
+kafka-topics.sh --create --topic anime_tsv --partitions 5 --replication-factor 2 --bootstrap-server kafka1:9093
+```
 ### 3. HDFS
 ### 4. Spark
 ### 5. Elasticsearch
