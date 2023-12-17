@@ -3,20 +3,28 @@
 # Anime Analysis and Recommendation System
 
 ## Introduction
-This repo contains our project in "Big Data Storage and Processing" at Hanoi University of Science and Technology.  
-
+Project on the Topic of ‘Storage and Processing of Big Data’
 
 ## Data Preparation
 Our data is crawled from [MyAnimeList](https://myanimelist.net/) and [Kaggle](https://www.kaggle.com/datasets/hernan4444/anime-recommendation-database-2020?select=rating_complete.csv&fbclid=IwAR37KBNhDMUmDlL2he0iLylicmXE4KjugeiNUarZjhUH-oqHNOtHkYVjvQ4)
+
+## Document
+[Slide](https://husteduvn-my.sharepoint.com/:p:/g/personal/khanh_ln200316_sis_hust_edu_vn/EVHZfF_BTQZOpt8AKefpUdcBLJ8hRu-4niXxZaTpanND0w?e=OCfdgz)
+[Report](https://husteduvn-my.sharepoint.com/:w:/g/personal/khanh_ln200316_sis_hust_edu_vn/EenyblT4C-BKvOXZqb15Z6IBTnkAHUUl4gpxbqLCm0Z6ug?e=lR1RVr)
+
 ## Flow
 
-## Start the system
+### Start the system
 
-First, run:
 ```
 docker-compose up -d
 ```
-
+### 1. Crawl
+### 2. Kafka
+### 3. HDFS
+### 4. Spark
+### 5. Elasticsearch
+### 6. Kibana
 Copy files from local machine into Spark master, for data analysis, we need to copy `elasticsearch` file into Spark master:
 ```
 docker cp src spark-master:/

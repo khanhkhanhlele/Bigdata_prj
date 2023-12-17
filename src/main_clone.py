@@ -75,8 +75,8 @@ if __name__ == "__main__":
     # print("genres header: ", genres_header)
 
     io_cluster.save_dataframes_to_elasticsearch(
-        (anime,anime),
-        ("anime","ANIME"),
+        (anime, anime),
+        ("anime" , "index_anime"),
         app_config.get_elasticsearch_conf()
     )
 
