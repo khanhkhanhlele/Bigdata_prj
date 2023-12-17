@@ -1,0 +1,25 @@
+docker exec -it kafka /bin/sh
+# vào container kafka
+
+kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic messages
+# tạo topic trong kafka tương ứng
+
+
+kafka-topics.sh --list --zookeeper zookeeper:2181
+# list các topic tồn tại
+
+kafka-topics.sh --describe --zookeeper zookeeper:2181 --topic dummy_topic
+# describe ( partition, replicator, ...)
+
+kafka-topics.sh --delete --zookeeper zookeeper:2181 --topic dummy_topic
+# delete a topic 
+
+kafka-console-producer.sh --broker-list kafka:9092 --topic messages
+# chạy producer gửi cái tin có topic tên là message
+
+kafka-console-consumer.sh --bootstrap-server kafka1:9092 --topic topic_thanhdung
+# chạy consumer listen từ topic message
+
+kafka-console-consumer.sh --bootstrap-server kafka:9092 --topic messages --from-beginning
+# chạy consumer listen từ topic message nhưng nghe từ đầu 
+
