@@ -39,9 +39,10 @@ docker cp elasticsearch-hadoop-7.15.1.jar spark-master:elasticsearch-hadoop-7.15
 
 Copy files into namenode:
 ```
-docker cp ../data/short_anime_ratings.csv namenode:/
-docker cp ../data/rating_complete.csv namenode:/
-docker cp ../data/long_anime_ratings.csv namenode:/
+docker cp data/short_anime_ratings.csv namenode:/
+docker cp data/rating_complete.csv namenode:/
+docker cp data/anime.csv namenode:/
+docker cp data/animelist.csv namenode:/
 ```
 
 Push data to HDFS:
