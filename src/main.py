@@ -43,8 +43,8 @@ if __name__ == "__main__":
     df_rating = spark.read.csv("hdfs://namenode:9000/data/rating_complete.csv")
     df_rating.createOrReplaceTempView("rating")
 
-    df_genres = spark.read.csv("hdfs://namenode:9000/data/genres.csv")
-    df_genres.createOrReplaceTempView("genres")
+    # df_genres = spark.read.csv("hdfs://namenode:9000/data/genres.csv")
+    # df_genres.createOrReplaceTempView("genres")
 
     #1 add animelist
     anime_list = spark.sql("Select a._c0 as userId, a._c1 as animeId, a._c2 as rating, a._c3 as watchingStatus, a._c4 as watchedEpisodes from animelist a ")
@@ -70,8 +70,8 @@ if __name__ == "__main__":
     # print("genres header: ", genres_header)
   
     io_cluster.save_dataframes_to_elasticsearch(
-        (anime, rating, animeTotalWatches, userTotalWatched),
-        ("anime", "rating", "anime_total_watches", "user_total_watched"),
+        (anime_list, anime, rating, animeTotalWatches, userTotalWatched, top_100_users),
+        ("anime_list", "anime", "rating", "anime_total_watches", "user_total_watched", "top_100_users"),
         app_config.get_elasticsearch_conf()
     )
 

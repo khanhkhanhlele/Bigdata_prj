@@ -28,14 +28,6 @@ kafka-topics.sh --create --topic rating_complete --partitions 5 --replication-fa
 kafka-topics.sh --create --topic anime_tsv --partitions 5 --replication-factor 2 --bootstrap-server kafka1:9093
 ```
 ### 3. HDFS
-### 4. Spark
-### 5. Elasticsearch
-### 6. Kibana
-Copy files from local machine into Spark master, for data analysis, we need to copy `elasticsearch` file into Spark master:
-```
-docker cp src spark-master:/
-docker cp elasticsearch-hadoop-7.15.1.jar spark-master:elasticsearch-hadoop-7.15.1.jar
-```
 
 Copy files into namenode:
 ```
@@ -52,10 +44,18 @@ hdfs dfs -mkdir /data/
 hdfs dfs -mkdir /model/
 hdfs dfs -mkdir /result/
 hdfs dfs -put short_anime_ratings.csv /data/
+hdfs dfs -put anime.csv /data/
+hdfs dfs -put animelist.csv /data/
 hdfs dfs -put rating_complete.csv /data/
-hdfs dfs -put long_anime_ratings.csv /data/
 exit
 ```
+### 4. Spark
+Copy files from local machine into Spark master, for data analysis, we need to copy `elasticsearch` file into Spark master:
+```
+docker cp src spark-master:/
+docker cp elasticsearch-hadoop-7.15.1.jar spark-master:elasticsearch-hadoop-7.15.1.jar
+```
+
 
 Go into Spark master container:
 ```
@@ -84,3 +84,7 @@ To run a Python file, we use `spark-submit`. `elasticsearch` is optional, add wh
 ```
 spark/bin/spark-submit --master spark://spark-master:7077 --jars elasticsearch-hadoop-7.15.1.jar --driver-class-path elasticsearch-hadoop-7.15.1.jar src/als_anime.py
 ```
+
+### 5. Elasticsearch
+### 6. Kibana
+
