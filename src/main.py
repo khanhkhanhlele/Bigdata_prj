@@ -8,6 +8,8 @@ from pyspark.sql import SparkSession
 from operator import add
 import sys,os
 from pyspark.sql.types import *
+os.environ['PYSPARK_PYTHON'] = sys.executable
+os.environ['PYSPARK_DRIVER_PYTHON'] = sys.executable
 
 import config, io_cluster
 

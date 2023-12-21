@@ -197,6 +197,43 @@ services:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     networks:
       - es-net
+      - elastic_network
+  
+  es_service_2:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.1
+    container_name: es_container_2
+    environment:
+      - cluster.name=es_cluster
+      - node.max_local_storage_nodes=3
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+      - discovery.zen.ping.unicast.hosts=elasticsearch
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./es_data_2:/usr/share/elasticsearch/data
+    networks:
+      - elastic_network
+
+  es_service_3:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.15.1
+    container_name: es_container_3
+    environment:
+      - cluster.name=es_cluster
+      - node.max_local_storage_nodes=3
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - xpack.security.enabled=false
+      - discovery.zen.ping.unicast.hosts=elasticsearch
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ./es_data_3:/usr/share/elasticsearch/data
+    networks:
+      - elastic_network
 
   kibana:
     image: docker.elastic.co/kibana/kibana:7.15.1
@@ -223,4 +260,6 @@ volumes:
 
 networks:
   es-net:
+    driver: bridge
+  elastic_network:
     driver: bridge
